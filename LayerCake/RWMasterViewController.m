@@ -58,8 +58,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = self.layerList.viewClasses[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        NSString *layerViewClassName = self.layerList.viewClasses[indexPath.row];
+        [[segue destinationViewController] setLayerViewClassName:layerViewClassName];
     }
 }
 

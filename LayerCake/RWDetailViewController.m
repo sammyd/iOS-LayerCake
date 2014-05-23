@@ -7,21 +7,22 @@
 //
 
 #import "RWDetailViewController.h"
+#import "RWLayerView.h"
 
 @interface RWDetailViewController ()
-- (void)configureView;
+
+@property (nonatomic, strong) UIView<RWLayerView> *layerView;
+
 @end
 
 @implementation RWDetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setLayerViewClassName:(NSString *)layerViewClassName
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
+    if(![layerViewClassName isEqualToString:_layerViewClassName]) {
+        _layerViewClassName = layerViewClassName;
         [self configureView];
     }
 }
@@ -29,9 +30,14 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if(self.layerViewClassName) {
+        Class layerViewClass = NSClassFromString(self.layerViewClassName);
+        self.title = [layerViewClass description];
+        if(self.layerView) {
+            [self.layerView removeFromSuperview];
+        }
+        self.layerView = [layerViewClass viewWithFrame:self.layerViewContainer.bounds];
+        [self.layerViewContainer addSubview:self.layerView];
     }
 }
 
@@ -42,10 +48,8 @@
     [self configureView];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)handleAnimateTapped:(id)sender {
+    [self.layerView animate];
 }
 
 @end
