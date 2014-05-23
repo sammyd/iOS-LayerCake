@@ -10,8 +10,10 @@
 
 @protocol RWLayerView <NSObject>
 
+// Class method to create a view
 + (instancetype)viewWithFrame:(CGRect)frame;
 
+// This should perform any animations you'd like to demonstrate
 - (void)animate;
 
 @end
