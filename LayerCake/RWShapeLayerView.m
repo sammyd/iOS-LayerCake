@@ -41,12 +41,7 @@
 
 - (void)animate
 {
-    // Prepare for animation - disable implicit animations
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-    
-    [CATransaction commit];
-    
+    // Bundle all of the animations into a transaction
     [CATransaction begin];
     [CATransaction setAnimationDuration:2];
     
@@ -115,7 +110,7 @@
     self.faceLayer.path = [self facePath].CGPath;
     self.faceLayer.strokeColor = [UIColor colorWithRed: 0.429 green: 0 blue: 0 alpha: 1].CGColor;
     self.faceLayer.lineWidth = 5.0;
-    self.faceLayer.fillColor = [UIColor colorWithRed: 1 green: 0.8 blue: 0.8 alpha: 1].CGColor;
+    self.faceLayer.fillColor = [UIColor yellowColor].CGColor;
     
     self.leftEyeLayer.path = [self leftEyePath].CGPath;
     [self configureEyeLayer:self.leftEyeLayer];
@@ -146,7 +141,7 @@
 - (void)configureEyeLayer:(CAShapeLayer *)eyeLayer
 {
     eyeLayer.strokeColor = [UIColor colorWithRed: 0.886 green: 0.59 blue: 0 alpha: 1].CGColor;
-    eyeLayer.fillColor = [UIColor colorWithRed: 0.429 green: 0.143 blue: 0 alpha: 1].CGColor;
+    eyeLayer.fillColor = [UIColor greenColor].CGColor;
     eyeLayer.lineWidth = 5.0;
 }
 
