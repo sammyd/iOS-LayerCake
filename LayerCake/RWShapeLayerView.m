@@ -41,7 +41,62 @@
 
 - (void)animate
 {
+    // Prepare for animation - disable implicit animations
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
     
+    [CATransaction commit];
+    
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:2];
+    
+    // Draw the tache
+    CABasicAnimation *tacheAnimationStart = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
+    tacheAnimationStart.fromValue = @0.5;
+    tacheAnimationStart.toValue = @0;
+    CABasicAnimation *tacheAnimationEnd = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    tacheAnimationEnd.fromValue = @0.5;
+    tacheAnimationEnd.toValue = @1;
+    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
+    groupAnimation.animations = @[tacheAnimationStart, tacheAnimationEnd];
+    [self.tacheLayer addAnimation:groupAnimation forKey:@"tacheAppearance"];
+    
+    // Toggle Colours of face and smile
+    CABasicAnimation *faceAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    faceAnimation.toValue = (id)self.leftEyeLayer.fillColor;
+    faceAnimation.fromValue = (id)self.faceLayer.fillColor;
+    [self.faceLayer addAnimation:faceAnimation forKey:@"faceColor"];
+    CABasicAnimation *leftEyeAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    leftEyeAnimation.toValue = (id)self.faceLayer.fillColor;
+    leftEyeAnimation.fromValue = (id)self.leftEyeLayer.fillColor;
+    [self.leftEyeLayer addAnimation:leftEyeAnimation forKey:@"eyeColor"];
+    CABasicAnimation *rightEyeAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+    rightEyeAnimation.toValue = (id)self.faceLayer.fillColor;
+    rightEyeAnimation.fromValue = (id)self.rightEyeLayer.fillColor;
+    [self.rightEyeLayer addAnimation:rightEyeAnimation forKey:@"eyeColor"];
+    
+    // Commit the color changes to the model tree
+    self.rightEyeLayer.fillColor = self.faceLayer.fillColor;
+    self.faceLayer.fillColor = self.leftEyeLayer.fillColor;
+    self.leftEyeLayer.fillColor = self.rightEyeLayer.fillColor;
+    
+    // Animate the path of the mouth
+    UIBezierPath *newMouthPath;
+    CABasicAnimation *mouthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+    if(self.animationState) {
+        newMouthPath = [self smilePath];
+    } else {
+        newMouthPath = [self sadMouthPath];
+    }
+    mouthAnimation.fromValue = (id)self.mouthLayer.path;
+    mouthAnimation.toValue = (id)newMouthPath.CGPath;
+    self.animationState = !self.animationState;
+    [self.mouthLayer addAnimation:mouthAnimation forKey:@"mouthPath"];
+    
+    self.mouthLayer.path = newMouthPath.CGPath;
+    
+    
+    [CATransaction commit];
 }
 
 + (NSString *)description
@@ -142,10 +197,10 @@
     UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
     [bezier2Path moveToPoint: CGPointMake(68.85, 168.88)];
     [bezier2Path addCurveToPoint: CGPointMake(108.73, 186.12) controlPoint1: CGPointMake(68.85, 168.88) controlPoint2: CGPointMake(75.03, 196.93)];
-    [bezier2Path addCurveToPoint: CGPointMake(171.39, 168.88) controlPoint1: CGPointMake(142.43, 175.32) controlPoint2: CGPointMake(121.64, 160.95)];
-    [bezier2Path moveToPoint: CGPointMake(251.15, 168.88)];
-    [bezier2Path addCurveToPoint: CGPointMake(211.27, 186.12) controlPoint1: CGPointMake(251.15, 168.88) controlPoint2: CGPointMake(244.97, 196.93)];
-    [bezier2Path addCurveToPoint: CGPointMake(148.61, 168.88) controlPoint1: CGPointMake(177.57, 175.32) controlPoint2: CGPointMake(198.36, 160.95)];
+    [bezier2Path addCurveToPoint: CGPointMake(160, 168.88) controlPoint1: CGPointMake(142.43, 175.32) controlPoint2: CGPointMake(121.64, 160.95)];
+    [bezier2Path addCurveToPoint:CGPointMake(211.27, 186.12) controlPoint1:CGPointMake(198.36, 160.95) controlPoint2:CGPointMake(177.57, 175.32)];
+    [bezier2Path addCurveToPoint:CGPointMake(251.15, 168.88) controlPoint1:CGPointMake(244.97, 196.93) controlPoint2:CGPointMake(251.15, 168.88)];
+    
     return bezier2Path;
 }
 
