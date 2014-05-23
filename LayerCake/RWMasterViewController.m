@@ -10,34 +10,20 @@
 #import "RWDetailViewController.h"
 #import "RWLayerViewList.h"
 
-@interface RWMasterViewController () {
-    NSMutableArray *_objects;
-}
+@interface RWMasterViewController ()
+
 @property (nonatomic, strong) RWLayerViewList *layerList;
+
 @end
 
-@implementation RWMasterViewController
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
+@implementation RWMasterViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.layerList = [[RWLayerViewList alloc] init];
-}
-
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -49,15 +35,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return [self.layerList.viewClasses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    NSString *className = self.layerList.viewClasses[indexPath.row];
+    Class class = NSClassFromString(className);
+    cell.textLabel.text = [class description];
     return cell;
 }
 
@@ -71,7 +58,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSString *object = self.layerList.viewClasses[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }

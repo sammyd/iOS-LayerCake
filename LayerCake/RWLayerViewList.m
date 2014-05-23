@@ -10,19 +10,25 @@
 #import "RWLayerView.h"
 #import <objc/runtime.h>
 
+@interface RWLayerViewList ()
+
+@property (nonatomic, strong, readwrite) NSArray *viewClasses;
+
+@end
+
 @implementation RWLayerViewList
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        [self classesWhichAdoptProtocol];
+        self.viewClasses = [self classesWhichAdoptProtocol:@protocol(RWLayerView)];
     }
     return self;
 }
 
 #pragma mark - Utility methods
-- (NSArray *)classesWhichAdoptProtocol
+- (NSArray *)classesWhichAdoptProtocol:(Protocol *)protocol
 {
     int numberOfClasses;
     numberOfClasses = objc_getClassList(NULL, 0);
@@ -33,12 +39,15 @@
         numberOfClasses = objc_getClassList(classes, numberOfClasses);
         
         Class *currentClass = classes;
+        NSMutableArray *classNames = [NSMutableArray array];
         for (int i=0; i<numberOfClasses; i++) {
-            if(class_conformsToProtocol(*currentClass, @protocol(RWLayerView))) {
+            if(class_conformsToProtocol(*currentClass, protocol)) {
                 NSLog(@"This class does: %@", NSStringFromClass(*currentClass));
+                [classNames addObject:NSStringFromClass(*currentClass)];
             }
             currentClass++;
         }
+        return [classNames copy];
     }
     return nil;
 }

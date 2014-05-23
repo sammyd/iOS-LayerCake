@@ -29,4 +29,9 @@
     
 }
 
++ (NSString *)description
+{
+    return @"CAShapeLayer";
+}
+
 @end
