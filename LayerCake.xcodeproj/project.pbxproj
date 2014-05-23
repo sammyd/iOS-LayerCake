@@ -24,6 +24,7 @@
 		F4416A01192E352200979F9F /* LayerCakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4416A00192E352200979F9F /* LayerCakeTests.m */; };
 		F4416A0F192E36C200979F9F /* RWLayerViewList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4416A0E192E36C200979F9F /* RWLayerViewList.m */; };
 		F4416A12192F3B7000979F9F /* RWShapeLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4416A11192F3B7000979F9F /* RWShapeLayerView.m */; };
+		F4416A15192F62F700979F9F /* RWGradientLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4416A14192F62F700979F9F /* RWGradientLayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		F4416A0E192E36C200979F9F /* RWLayerViewList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWLayerViewList.m; sourceTree = "<group>"; };
 		F4416A10192F3B7000979F9F /* RWShapeLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWShapeLayerView.h; sourceTree = "<group>"; };
 		F4416A11192F3B7000979F9F /* RWShapeLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWShapeLayerView.m; sourceTree = "<group>"; };
+		F4416A13192F62F700979F9F /* RWGradientLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGradientLayerView.h; sourceTree = "<group>"; };
+		F4416A14192F62F700979F9F /* RWGradientLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWGradientLayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				F4416A0B192E359500979F9F /* RWLayerView.h */,
 				F4416A10192F3B7000979F9F /* RWShapeLayerView.h */,
 				F4416A11192F3B7000979F9F /* RWShapeLayerView.m */,
+				F4416A13192F62F700979F9F /* RWGradientLayerView.h */,
+				F4416A14192F62F700979F9F /* RWGradientLayerView.m */,
 			);
 			name = "Layer Views";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				F44169E9192E352100979F9F /* RWMasterViewController.m in Sources */,
 				F4416A12192F3B7000979F9F /* RWShapeLayerView.m in Sources */,
 				F44169EC192E352100979F9F /* RWDetailViewController.m in Sources */,
+				F4416A15192F62F700979F9F /* RWGradientLayerView.m in Sources */,
 				F44169E3192E352100979F9F /* RWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
