@@ -11,6 +11,8 @@
 @interface RWEmitterLayerView ()
 
 @property (nonatomic, strong) CAEmitterLayer *emitterLayer;
+@property (nonatomic, assign) NSUInteger animationStatus;
+@property (nonatomic, strong) NSArray *animationStates;
 
 @end
 
@@ -28,6 +30,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
+        [self prepareAnimationStates];
         [self createEmitterLayer];
     }
     return self;
@@ -40,7 +43,17 @@
 
 - (void)animate
 {
+    self.animationStatus = (self.animationStatus + 1) % [self.animationStates count];
     
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:2];
+    
+    NSDictionary *valueUpdates = self.animationStates[self.animationStatus];
+    [valueUpdates enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *object, BOOL *stop) {
+        [self.emitterLayer setValue:object forKeyPath:key];
+    }];
+    
+    [CATransaction commit];
 }
 
 #pragma mark - Utility methods
@@ -63,7 +76,7 @@
     rocket.emissionLongitude = M_PI / 2;
     rocket.emissionLatitude = 0;
     rocket.lifetime = 1.6;
-    rocket.birthRate = 1;
+    rocket.birthRate = 0.5;
     rocket.velocity = -400;
     rocket.velocityRange = 100;
     rocket.yAcceleration = 250;
@@ -137,6 +150,42 @@
     preSpark.emitterCells = @[spark];
     rocket.emitterCells = @[flare, firework, preSpark];
     self.emitterLayer.emitterCells = @[rocket];
+}
+
+- (void)prepareAnimationStates
+{
+    self.animationStatus = 0;
+    self.animationStates = @[
+                             @{
+                                 @"emitterCells.rocket.birthRate" : @0.5,
+                                 @"emitterCells.rocket.emissionRange" : @(M_PI_4),
+                                 @"emitterCells.rocket.velocity" : @(-400),
+                                 @"emitterCells.rocket.velocityRange" : @(100),
+                                 @"emitterCells.rocket.yAcceleration" : @(250),
+                                 @"emitterCells.rocket.emitterCells.firework.emissionRange" : @(2 * M_PI),
+                                 @"emitterCells.rocket.emitterCells.firework.velocity" : @(-130),
+                                 @"emitterCells.rocket.emitterCells.firework.velocityRange" : @(30),
+                                 @"emitterCells.rocket.emitterCells.firework.yAcceleration" : @(80),
+                                 @"emitterCells.rocket.emitterCells.preSpark.velocity" : @(-80),
+                                 @"emitterCells.rocket.emitterCells.preSpark.yAcceleration" : @(65),
+                                 @"emitterCells.rocket.emitterCells.preSpark.emissionRange" : @(2*M_PI)
+                                 },
+                             @{
+                                 @"emitterCells.rocket.birthRate" : @10,
+                                 @"emitterCells.rocket.emissionRange" : @(M_PI_2),
+                                 @"emitterCells.rocket.velocity" : @(-800),
+                                 @"emitterCells.rocket.velocityRange" : @(100),
+                                 @"emitterCells.rocket.yAcceleration" : @(500),
+                                 @"emitterCells.rocket.emitterCells.firework.emissionRange" : @(2 * M_PI),
+                                 @"emitterCells.rocket.emitterCells.firework.velocity" : @(-200),
+                                 @"emitterCells.rocket.emitterCells.firework.velocityRange" : @(30),
+                                 @"emitterCells.rocket.emitterCells.firework.yAcceleration" : @(40),
+                                 @"emitterCells.rocket.emitterCells.preSpark.velocity" : @(-200),
+                                 @"emitterCells.rocket.emitterCells.preSpark.yAcceleration" : @(165),
+                                 @"emitterCells.rocket.emitterCells.preSpark.emissionRange" : @(2*M_PI)
+                                 },
+                             @{}
+                             ];
 
 }
 
