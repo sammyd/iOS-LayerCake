@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22F7BB0A192FDD4B006DB72E /* RWEmitterLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7BB09192FDD4B006DB72E /* RWEmitterLayerView.m */; };
 		F44169D3192E352100979F9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44169D2192E352100979F9F /* Foundation.framework */; };
 		F44169D5192E352100979F9F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44169D4192E352100979F9F /* CoreGraphics.framework */; };
 		F44169D7192E352100979F9F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44169D6192E352100979F9F /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22F7BB08192FDD4B006DB72E /* RWEmitterLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWEmitterLayerView.h; sourceTree = "<group>"; };
+		22F7BB09192FDD4B006DB72E /* RWEmitterLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWEmitterLayerView.m; sourceTree = "<group>"; };
 		F44169CF192E352100979F9F /* LayerCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayerCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44169D2192E352100979F9F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F44169D4192E352100979F9F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,8 @@
 				F4576C43192F8249002321B0 /* RWTextLayerView.m */,
 				F4576C45192F8B9D002321B0 /* RWScrollLayerView.h */,
 				F4576C46192F8B9D002321B0 /* RWScrollLayerView.m */,
+				22F7BB08192FDD4B006DB72E /* RWEmitterLayerView.h */,
+				22F7BB09192FDD4B006DB72E /* RWEmitterLayerView.m */,
 			);
 			name = "Layer Views";
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F7BB0A192FDD4B006DB72E /* RWEmitterLayerView.m in Sources */,
 				F4576C41192F7A75002321B0 /* RWReplicatorLayerView.m in Sources */,
 				F44169DF192E352100979F9F /* main.m in Sources */,
 				F4576C44192F8249002321B0 /* RWTextLayerView.m in Sources */,
