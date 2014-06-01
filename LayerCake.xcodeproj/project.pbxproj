@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2263588F193B94270055CBE5 /* RWBasicLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2263588E193B94270055CBE5 /* RWBasicLayerView.m */; };
 		22F7BB0A192FDD4B006DB72E /* RWEmitterLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7BB09192FDD4B006DB72E /* RWEmitterLayerView.m */; };
 		F44169D3192E352100979F9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44169D2192E352100979F9F /* Foundation.framework */; };
 		F44169D5192E352100979F9F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44169D4192E352100979F9F /* CoreGraphics.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2263588D193B94270055CBE5 /* RWBasicLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWBasicLayerView.h; sourceTree = "<group>"; };
+		2263588E193B94270055CBE5 /* RWBasicLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWBasicLayerView.m; sourceTree = "<group>"; };
 		22F7BB08192FDD4B006DB72E /* RWEmitterLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWEmitterLayerView.h; sourceTree = "<group>"; };
 		22F7BB09192FDD4B006DB72E /* RWEmitterLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWEmitterLayerView.m; sourceTree = "<group>"; };
 		F44169CF192E352100979F9F /* LayerCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayerCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				F4416A0B192E359500979F9F /* RWLayerView.h */,
+				2263588D193B94270055CBE5 /* RWBasicLayerView.h */,
+				2263588E193B94270055CBE5 /* RWBasicLayerView.m */,
 				F4416A10192F3B7000979F9F /* RWShapeLayerView.h */,
 				F4416A11192F3B7000979F9F /* RWShapeLayerView.m */,
 				F4416A13192F62F700979F9F /* RWGradientLayerView.h */,
@@ -329,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2263588F193B94270055CBE5 /* RWBasicLayerView.m in Sources */,
 				22F7BB0A192FDD4B006DB72E /* RWEmitterLayerView.m in Sources */,
 				F4576C41192F7A75002321B0 /* RWReplicatorLayerView.m in Sources */,
 				F44169DF192E352100979F9F /* main.m in Sources */,
